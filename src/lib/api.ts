@@ -104,3 +104,18 @@ export async function fetchScreenToast(): Promise<ScreenToast | null> {
   if (data === null) return null;
   return data as ScreenToast;
 }
+
+export async function fetchStaffDrinkOrders(status?: DrinkOrderStatus) {
+  const q = status ? `?status=${encodeURIComponent(status)}` : "";
+  const res = await fetch(apiUrl(`/api/drink-orders/staff${q}`));
+  return parseJson<DrinkOrder[]>(res);
+}
+
+export async function updateDrinkOrderStatus(orderId: number, status: DrinkOrderStatus) {
+  const res = await fetch(apiUrl(`/api/drink-orders/${orderId}/status`), {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status }),
+  });
+  return parseJson<DrinkOrder>(res);
+}

@@ -4,6 +4,7 @@ import { HomePage } from "@/pages/HomePage";
 import { CatalogoPage } from "@/pages/CatalogoPage";
 import { FelicitacoesPage } from "@/pages/FelicitacoesPage";
 import { EnviarFelicitationPage } from "@/pages/EnviarFelicitationPage";
+import { GarcomPage } from "@/pages/GarcomPage";
 import { IrlandaPageShell } from "@/components/IrlandaPageShell";
 
 const queryClient = new QueryClient();
@@ -16,6 +17,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/catalogo" element={<CatalogoPage />} />
+          <Route path="/garcom" element={<GarcomPage />} />
           <Route path="/felicitacoes" element={<FelicitacoesPage />} />
           <Route path="/felicitacoes/enviar" element={<EnviarFelicitationPage />} />
           <Route path="/felicitacoes-tela" element={<Navigate to="/felicitacoes" replace />} />

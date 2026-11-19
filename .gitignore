@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build (Vite — a Vercel faz o build)
+dist/
+
+# Vercel / ambiente local
+.vercel/
+*.local
+
+# Variáveis de ambiente (não commitar segredos)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# SO e editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Testes / cobertura
+coverage/
