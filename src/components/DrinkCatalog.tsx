@@ -149,7 +149,17 @@ export function DrinkCatalog() {
             </p>
           )}
 
-          {!drinksQuery.isLoading && !drinks.length && (
+          {drinksQuery.isError && (
+            <p className="irlanda-card mb-4 rounded-2xl p-4 text-center text-sm text-[#d21034]">
+              {drinksQuery.error instanceof Error
+                ? drinksQuery.error.message
+                : "Não foi possível carregar o catálogo."}
+            </p>
+          )}
+
+          {drinksQuery.isLoading && <p className="mb-4 text-center text-sm text-[#5c5c5c]">A carregar bebidas…</p>}
+
+          {!drinksQuery.isLoading && !drinksQuery.isError && !drinks.length && (
             <p className="irlanda-card rounded-2xl p-8 text-center text-[#5c5c5c]">Sem bebidas nesta categoria.</p>
           )}
 

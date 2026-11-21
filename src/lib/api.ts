@@ -39,10 +39,17 @@ export type ScreenToast =
   | { kind: "message"; id: number; guest_name: string; message: string };
 
 async function parseJson<T>(res: Response): Promise<T> {
+  const contentType = res.headers.get("content-type") ?? "";
+  const raw = res.status === 204 ? "" : await res.text();
+  const looksHtml = contentType.includes("text/html") || raw.trimStart().startsWith("<");
+
   if (!res.ok) {
+    if (looksHtml || res.status === 502 || res.status === 504) {
+      throw new Error("API indisponível. Confirme o Nginx e o serviço convite-api na VPS.");
+    }
     let detail = res.statusText;
     try {
-      const body = (await res.json()) as { detail?: string | { msg: string }[] };
+      const body = JSON.parse(raw) as { detail?: string | { msg: string }[] };
       if (typeof body.detail === "string") detail = body.detail;
       else if (Array.isArray(body.detail) && body.detail[0]?.msg) detail = body.detail[0].msg;
     } catch {
@@ -50,8 +57,11 @@ async function parseJson<T>(res: Response): Promise<T> {
     }
     throw new Error(detail);
   }
-  if (res.status === 204) return undefined as T;
-  return res.json() as Promise<T>;
+  if (res.status === 204 || raw === "") return undefined as T;
+  if (looksHtml) {
+    throw new Error("A API não respondeu em JSON. Verifique o proxy /api na VPS.");
+  }
+  return JSON.parse(raw) as T;
 }
 
 export function mediaUrl(path: string) {
@@ -100,9 +110,8 @@ export async function fetchRecentFelicitacoes(limit = 40) {
 export async function fetchScreenToast(): Promise<ScreenToast | null> {
   const res = await fetch(apiUrl(`/api/screen/next-toast`));
   if (res.status === 204) return null;
-  const data = await res.json();
-  if (data === null) return null;
-  return data as ScreenToast;
+  const data = await parseJson<ScreenToast | null>(res);
+  return data ?? null;
 }
 
 export async function fetchStaffDrinkOrders(status?: DrinkOrderStatus) {

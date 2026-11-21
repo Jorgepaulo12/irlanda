@@ -15,4 +15,11 @@ export default defineConfig({
       "/uploads": { target: devApiTarget, changeOrigin: true },
     },
   },
+  preview: {
+    port: 4174,
+    proxy: {
+      "/api": { target: devApiTarget, changeOrigin: true, ws: true },
+      "/uploads": { target: devApiTarget, changeOrigin: true },
+    },
+  },
 });
