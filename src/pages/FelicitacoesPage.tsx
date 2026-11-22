@@ -29,7 +29,7 @@ function FelicitacaoCard({
 
   return (
     <article
-      className={`relative z-20 max-w-[82%] rounded-2xl border border-[#169b62]/35 bg-white/92 px-12 py-10 text-center shadow-lg ring-1 ring-[#007168]/15 backdrop-blur-md ${cardClass}`}
+      className={`relative z-20 max-w-[82%] rounded-2xl border border-[#169b62]/35 bg-white px-12 py-10 text-center shadow-lg ring-1 ring-[#007168]/15 ${cardClass}`}
     >
       <Sparkles className="felic-icon-in mx-auto mb-4 text-[#f4c430]" size={36} />
       <MessageCircleHeart className="felic-icon-in mx-auto mb-6 text-[#169b62]" size={44} />
@@ -46,8 +46,7 @@ function FelicitacaoCard({
 
 function FelicitacaoBackdrop({ phase }: { phase: FelicitacaoPhase }) {
   if (phase === "hidden") return null;
-  const cls = phase === "leave" ? "felic-backdrop-out" : phase === "enter" ? "felic-backdrop-in" : "opacity-100";
-  return <div className={`absolute inset-0 z-[15] bg-white/35 backdrop-blur-[2px] ${cls}`} aria-hidden />;
+  return null;
 }
 
 function FelicitacaoStage({ phase, children }: { phase: FelicitacaoPhase; children: ReactNode }) {
@@ -105,12 +104,9 @@ function Stage({
 
         <main className="absolute inset-0 z-10 grid place-items-center">
           {display && phase !== "hidden" ? (
-            <>
-              <FelicitacaoBackdrop phase={phase} />
-              <FelicitacaoStage phase={phase}>
-                <FelicitacaoCard guest_name={display.guest_name} message={display.message} phase={phase} />
-              </FelicitacaoStage>
-            </>
+            <FelicitacaoStage phase={phase}>
+              <FelicitacaoCard guest_name={display.guest_name} message={display.message} phase={phase} />
+            </FelicitacaoStage>
           ) : null}
         </main>
 

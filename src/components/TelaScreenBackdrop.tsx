@@ -27,7 +27,7 @@ export function TelaScreenBackdrop({
       ) : isVideo ? (
         <video
           src={bg}
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
+          className="absolute inset-0 h-full w-full object-cover"
           autoPlay
           muted
           loop
@@ -36,7 +36,6 @@ export function TelaScreenBackdrop({
       ) : (
         <PreloadedCoverImage src={bg} />
       )}
-      <div className="irlanda-veil absolute inset-0" />
     </>
   );
 }

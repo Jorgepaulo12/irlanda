@@ -13,7 +13,7 @@ export function PreloadedCoverImage({
   src,
   alt = "",
   className = "absolute inset-0 h-full w-full object-cover",
-  visibleClassName = "opacity-70",
+  visibleClassName = "opacity-100",
   hiddenClassName = "opacity-0",
 }: PreloadedCoverImageProps) {
   const [ready, setReady] = useState(false);

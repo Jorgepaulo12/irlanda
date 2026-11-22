@@ -77,7 +77,7 @@ export function LiveSlideBackground({
         alt=""
         aria-hidden
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-in-out ${
-          showFallback ? "opacity-50" : "opacity-0"
+          showFallback ? "opacity-100" : "opacity-0"
         }`}
       />
       {slides.map((slide, i) => {
