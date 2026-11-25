@@ -41,7 +41,11 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opac
 #single-back:after{background:linear-gradient(270deg,rgba(0,0,0,.2),transparent 18%,transparent 88%,rgba(0,0,0,.13))}
 @media (prefers-reduced-motion:reduce){.leaf,#book,#single-leaf{transition-duration:.01s}}
 @media (max-aspect-ratio:4/5){body{justify-content:space-between}#scene{display:none}#single-scene{display:flex}#nav{flex-shrink:0;margin:0 12px 12px}}
+#download-book{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;z-index:3;border:1px solid var(--gold);border-radius:20px;padding:7px 16px;background:var(--g2);color:var(--gold);font:14px Georgia,serif;text-decoration:none}
+#download-book:hover{background:var(--gold);color:var(--g2)}
+#download-book:focus-visible{outline:2px solid #fff;outline-offset:2px}
 </style></head><body>
+<a id="download-book" href="/livro-content.html" download="30-Anos-de-Relacoes-Diplomaticas-Irlanda-e-Mocambique.html">Baixar livro</a>
 <div id="scene"><div id="book"></div></div>
 <div id="single-scene"><div id="single-book"><img id="single-under" alt="" aria-hidden="true"><div id="single-leaf"><div class="single-face" id="single-front"><img id="single-front-image" alt=""></div><div class="single-face" id="single-back"><img id="single-back-image" alt=""></div></div></div></div>
 <div id="nav"><button id="prev">Anterior</button><span id="pg"></span><button id="next">Seguinte</button></div>
