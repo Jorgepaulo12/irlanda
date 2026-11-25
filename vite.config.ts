@@ -9,6 +9,7 @@ const devApiTarget =
 export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
   server: {
+    host: "0.0.0.0",
     port: 5174,
     proxy: {
       "/api": { target: devApiTarget, changeOrigin: true, ws: true },
@@ -16,6 +17,7 @@ export default defineConfig({
     },
   },
   preview: {
+    host: "0.0.0.0",
     port: 4174,
     proxy: {
       "/api": { target: devApiTarget, changeOrigin: true, ws: true },

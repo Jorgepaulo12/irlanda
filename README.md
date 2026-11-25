@@ -17,7 +17,10 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:5174](http://localhost:5174).
+Abre [http://localhost:5174](http://localhost:5174). Para aceder noutro
+dispositivo na mesma rede Wi-Fi, abre `http://<IP-do-computador>:5174`
+(por exemplo, o IP local atribuído pelo router). O servidor de preview também
+fica acessível pela rede na porta `4174`.
 
 ## Deploy
 
