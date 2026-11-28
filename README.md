@@ -11,6 +11,11 @@ Aplicação **separada** do convite principal, com identidade **Ireland — Moza
 
 Usa o **mesmo backend** `convite-api` (`POST /api/felicitacoes/open`, `POST /api/drink-orders/open`). **Reinicie o serviço na VPS** após actualizar o API. Em dev, proxy no `vite.config.ts`; em produção, `vercel.json` ou `VITE_API_URL`.
 
+Os totais de leituras e downloads do livro são guardados no banco da API.
+Depois de atualizar o `convite-api` na VPS, reinicie o serviço para os contadores
+ficarem disponíveis na página `/livro`. Leituras contam aberturas do livro;
+downloads contam cliques em «Baixar livro».
+
 ```bash
 cd irlanda-bar
 npm install
